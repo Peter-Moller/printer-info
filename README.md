@@ -19,12 +19,6 @@ The script is written for POSIX `/bin/sh` and should work on both macOS and Linu
 
 ## Usage
 
-Make the script executable:
-
-```sh
-chmod +x cups-printers.sh
-```
-
 ### List printers
 
 ```sh
@@ -36,9 +30,8 @@ Example:
 ```text
 QUEUE                    DEF STATUS     DESCRIPTION                  DEVICE                                     PPD
 ------------------------ --- ---------- ---------------------------- ------------------------------------------ ---------------------------------------------
-color_cs_lth_se              idle       color.cs.lth.se              lpd://color.cs.lth.se/                     /etc/cups/ppd/color_cs_lth_se.ppd
+color_cs_lu_see              idle       color.cs.lu.se               lpd://color.cs.lu.se/                      /etc/cups/ppd/color_cs_lu_se.ppd
 LU-Canon                 yes idle       LU-Canon                     lpd://print.example.org/lu-canon           /etc/cups/ppd/LU-Canon.ppd
-plotter_eit_lth_se           idle       plotter.eit.lth.se           lpd://plotter.eit.lth.se/                  /etc/cups/ppd/plotter_eit_lth_se.ppd
 ```
 
 `DEF` indicates the default printer.
@@ -46,18 +39,18 @@ plotter_eit_lth_se           idle       plotter.eit.lth.se           lpd://plott
 ### Show details for a printer
 
 ```sh
-./cups-printers.sh color_cs_lth_se
+./cups-printers.sh color_cs_lu_se
 ```
 
 Example:
 
 ```text
-Queue:         color_cs_lth_se
+Queue:         color_cs_lu_se
 Default:       no
 Status:        idle
-Description:   color.cs.lth.se
-Device URI:    lpd://color.cs.lth.se/
-PPD:           /etc/cups/ppd/color_cs_lth_se.ppd
+Description:   color.cs.lu.se
+Device URI:    lpd://color.cs.lu.se/
+PPD:           /etc/cups/ppd/color_cs_lu_se.ppd
 
 Selected defaults:
 
@@ -70,13 +63,13 @@ The normal detail view shows a small set of commonly useful printer options.
 ### Show all printer options
 
 ```sh
-./cups-printers.sh color_cs_lth_se --options
+./cups-printers.sh color_cs_lu_se --options
 ```
 
 This displays all printer-specific options reported by:
 
 ```sh
-lpoptions -p color_cs_lth_se -l
+lpoptions -p color_cs_lu_se -l
 ```
 
 For example:
@@ -111,13 +104,13 @@ Long-edge binding is the usual book-style duplex mode.
 For example, to make A4 the default paper size:
 
 ```sh
-lpoptions -p color_cs_lth_se -o PageSize=A4
+lpoptions -p color_cs_lu_se -o PageSize=A4
 ```
 
 Check the result with:
 
 ```sh
-lpoptions -p color_cs_lth_se -l | grep '^PageSize/'
+lpoptions -p color_cs_lu_se -l | grep '^PageSize/'
 ```
 
 The selected value is marked with `*`, for example:
@@ -129,7 +122,7 @@ PageSize/Media Size: Letter Legal *A4 A5
 To remove the per-user override:
 
 ```sh
-lpoptions -p color_cs_lth_se -r PageSize
+lpoptions -p color_cs_lu_se -r PageSize
 ```
 
 ### Per-user versus system defaults
@@ -153,13 +146,13 @@ An option can also be specified for a single print job without changing any defa
 For example:
 
 ```sh
-lp -d color_cs_lth_se -o media=A4 document.pdf
+lp -d color_cs_lu_se -o media=A4 document.pdf
 ```
 
 or for long-edge duplex printing:
 
 ```sh
-lp -d color_cs_lth_se -o sides=two-sided-long-edge document.pdf
+lp -d color_cs_lu_se -o sides=two-sided-long-edge document.pdf
 ```
 
 ## PPD files and driverless printing
